@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteRule ^(.*)$ index.php
+
+php_value mbstring.detect_order         ASCII,ISO-2022-JP,UTF-8,SJIS-win,SJIS,eucJP-win,EUC-JP
+php_value mbstring.encoding_translation On
+php_value mbstring.func_overload        0
+php_value mbstring.http_input           ASCII,ISO-2022-JP,UTF-8,SJIS-win,SJIS,eucJP-win,EUC-JP
+php_value mbstring.http_output          pass
+php_value mbstring.internal_encoding    UTF-8
+php_value mbstring.language             Japanese
+php_value mbstring.substitute_character none
+php_value post_max_size                 16M

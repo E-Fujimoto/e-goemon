@@ -1,0 +1,78 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>goemon</title>
+<link rel="stylesheet" href="<?= $this->baseUrl(); ?>/styles/jquery-ui.css">
+<link rel="stylesheet" href="<?= $this->baseUrl(); ?>/styles/bootstrap.min.css">
+<link rel="stylesheet" href="<?= $this->baseUrl(); ?>/styles/bootstrap-theme.min.css">
+<script src="<?= $this->baseUrl(); ?>/scripts/jquery-1.11.1styles.min.js"></script>
+<script src="<?= $this->baseUrl(); ?>/scripts/jquery-ui.min.js"></script>
+<script src="<?= $this->baseUrl(); ?>/scripts/bootstrap.min.js"></script>
+<script src="<?= $this->baseUrl(); ?>/scripts/jquery.lightbox_me.js"></script>
+<script src="<?= $this->baseUrl(); ?>/scripts/script.js"></script>
+<base href="<?= $this->baseUrl(); ?>/">
+</head>
+  <body>
+<?php echo $this->layout()->content; ?>
+  </body>
+</html>
+
+<html>
+<body>
+<?php if ($this->debug): ?>
+<style type="text/css">
+table.debug {
+    color: #000000;
+    border-collapse: collapse;
+    font-family: monospace, sans-serif;
+    text-align: center;
+    margin: auto;
+    padding-top: 5px;
+}
+table.debug th {
+    color: #000000;
+    background-color: #CCFFFF;
+    font-family: monospace, sans-serif;
+    text-align: left;
+    vertical-align: middle;
+    padding: 0.5em;
+    border: 1px solid #CCCCCC;
+}
+table.debug td {
+    color: #000000;
+    background-color: #FFFFFF;
+    font-family: monospace, sans-serif;
+    text-align: left;
+    vertical-align: middle;
+    padding: 0.5em;
+    border: 1px solid #CCCCCC;
+    white-space: normal;
+}
+</style>
+<div style="clear: both;">&nbsp;</div>
+<hr>
+<?php if (isset($this->profiles) && is_array($this->profiles) && count($this->profiles) > 0): ?>
+<table summary="profile" class="debug">
+  <tr>
+    <td>総クエリー数：<?php echo $this->escape($this->queryCount); ?></td>
+    <td>総実行時間：<?php echo $this->escape($this->totalTime); ?></td>
+  </tr>
+  <tr>
+    <th>クエリー</th>
+    <th>実行時間</th>
+  </tr>
+<?php foreach ($this->profiles as $profile): ?>
+  <tr>
+    <td><?php echo $this->escape($profile->getQuery()); ?></td>
+    <td><?php echo $this->escape($profile->getElapsedSecs()); ?></td>
+  </tr>
+<?php endforeach; ?>
+</table>
+<?php endif; ?>
+<?php echo "----------------------viewVars----------------------------"?><br>
+<?php Zend_Debug::dump($this->getVars()); ?>
+<?php echo "----------------------SESSION----------------------------"?><br>
+<?php if (isset($_SESSION)): ?><?php Zend_Debug::dump($_SESSION, '$_SESSION'); ?><?php endif; ?>
+<?php endif; ?>
+</body>
+</html>

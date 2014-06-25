@@ -1,0 +1,19 @@
+diff a/_common/System/Controller/Action/ActionAbstract.php b/_common/System/Controller/Action/ActionAbstract.php	(rejected hunks)
+@@ -7,17 +7,4 @@
+  */
+ abstract class System_Controller_Action_ActionAbstract extends Zend_Controller_Action
+ {
+-	public function preDispatch()
+-    {
+-   		if (preg_match('/\/sp$/', APPLICATION_VIEW)) {
+-   			if (!$this->_helper->resource('system_mobile_agent')->isSmartphone($this->_request->getServer('HTTP_USER_AGENT'))) {
+-				$this->redirect(str_replace('sp', '', HTTP_ROOT));
+-   			}
+-		} else {
+-    		if ($this->_helper->resource('system_mobile_agent')->isSmartphone($this->_request->getServer('HTTP_USER_AGENT'))) {
+-			    $this->redirect(HTTP_ROOT . '/sp');
+-   		    }
+-		}
+-	}
+-	
+ }
