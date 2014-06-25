@@ -1,0 +1,4 @@
+<?php
+abstract class Model_Controller_Action_ActionAbstract extends System_Controller_Action_ActionAbstract
+{
+}
