@@ -1,4 +1,13 @@
 <?php
+/**
+ * フォーム等に対してトークンを付与する
+ *
+ * @category  System
+ * @package   System_View_Helper
+ * @copyright Copyright 2014 SDM-Summit
+ * @license   New BSD License
+ * @version   $Id$
+ */
 class System_View_Helper_Token extends Zend_View_Helper_Abstract
 {
     private $_token = null;

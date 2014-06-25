@@ -1,4 +1,15 @@
 <?php
+/**
+ * 認証情報保存クラス
+ *
+ * セッションを利用してユーザーの認証を保持する
+ *
+ * @category  System
+ * @package   System
+ * @copyright Copyright 2014 SDM-Summit
+ * @license   New BSD License
+ * @version   $Id$
+ */
 class System_Auth
 {
     private $_auth = null;

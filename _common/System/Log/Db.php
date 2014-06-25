@@ -12,13 +12,15 @@ class System_Log_Db extends System_Log_LogAbstract
         $this->_db = Zend_Db_Table::getDefaultAdapter();
 
         $this->_table   = 'log';
-        $this->_columns = array('priority'      => 'priority',
-                                'priority_name' => 'priorityName',
-                                'message'       => 'message',
-                                'event_date'    => 'timestamp',
-                                'ip_address'    => 'ip',
-                                'remote_host'   => 'host',
-                                'user_agent'    => 'user-agent');
+        $this->_columns = array(
+            'priority'      => 'priority',
+            'priority_name' => 'priorityName',
+            'message'       => 'message',
+            'event_date'    => 'timestamp',
+            'ip_address'    => 'ip',
+            'remote_host'   => 'host',
+            'user_agent'    => 'user-agent',
+        );
 
         $this->setWriter();
         $this->setLogger();

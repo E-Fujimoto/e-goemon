@@ -1,20 +1,24 @@
 <?php
 class System_Net_Ftp
 {
-    private $_code = array('NET_FTP_FILES_ONLY'  => 0,
-                           'NET_FTP_DIRS_ONLY'   => 1,
-                           'NET_FTP_DIRS_FILES'  => 2,
-                           'NET_FTP_RAWLIST'     => 3,
-                           'NET_FTP_BLOCKING'    => 1,
-                           'NET_FTP_NONBLOCKING' => 2);
+    private $_code = array(
+        'NET_FTP_FILES_ONLY'  => 0,
+        'NET_FTP_DIRS_ONLY'   => 1,
+        'NET_FTP_DIRS_FILES'  => 2,
+        'NET_FTP_RAWLIST'     => 3,
+        'NET_FTP_BLOCKING'    => 1,
+        'NET_FTP_NONBLOCKING' => 2,
+    );
 
-    private $_param = array('host'    => '',
-                            'port'    => 21,
-                            'user'    => '',
-                            'pass'    => '',
-                            'passive' => false,
-                            'mode'    => FTP_BINARY,
-                            'timeout' => 100);
+    private $_param = array(
+        'host'    => '',
+        'port'    => 21,
+        'user'    => '',
+        'pass'    => '',
+        'passive' => false,
+        'mode'    => FTP_BINARY,
+        'timeout' => 100,
+    );
 
     private $_ftp = null;
 
@@ -32,21 +36,31 @@ class System_Net_Ftp
             $this->setParam($param);
         }
 
-        $this->_lsMatch = array('unix'    => array('pattern' => '/(?:(d)|.)([rwxts-]{9})\s+(\w+)\s+([\w\d-()?.]+)\s+([\w\d-()?.]+)\s+(\w+)\s+(\S+\s+\S+\s+\S+)\s+(.+)/',
-                                                   'map'     => array('is_dir'        => 1,
-                                                                      'rights'        => 2,
-                                                                      'files_inside'  => 3,
-                                                                      'user'          => 4,
-                                                                      'group'         => 5,
-                                                                      'size'          => 6,
-                                                                      'date'          => 7,
-                                                                      'name'          => 8)),
-                                'windows' => array('pattern' => '/([0-9\-]+)\s+([0-9:APM]+)\s+((<DIR>)|\d+)\s+(.+)/',
-                                                   'map'     => array('date'   => 1,
-                                                                      'time'   => 2,
-                                                                      'size'   => 3,
-                                                                      'is_dir' => 4,
-                                                                      'name'   => 5)));
+        $this->_lsMatch = array(
+            'unix'    => array(
+                'pattern' => '/(?:(d)|.)([rwxts-]{9})\s+(\w+)\s+([\w\d-()?.]+)\s+([\w\d-()?.]+)\s+(\w+)\s+(\S+\s+\S+\s+\S+)\s+(.+)/',
+                'map'     => array(
+                    'is_dir'        => 1,
+                    'rights'        => 2,
+                    'files_inside'  => 3,
+                    'user'          => 4,
+                    'group'         => 5,
+                    'size'          => 6,
+                    'date'          => 7,
+                    'name'          => 8,
+                ),
+            ),
+            'windows' => array(
+                'pattern' => '/([0-9\-]+)\s+([0-9:APM]+)\s+((<DIR>)|\d+)\s+(.+)/',
+                'map'     => array(
+                    'date'   => 1,
+                    'time'   => 2,
+                    'size'   => 3,
+                    'is_dir' => 4,
+                    'name'   => 5,
+                ),
+            ),
+        );
     }
 
     public function setParam($param)

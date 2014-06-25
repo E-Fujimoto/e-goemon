@@ -118,6 +118,13 @@ class System_Http
     private $_timeout = null;
 
     /**
+     * Max Redirects
+     *
+     * @var int
+     */
+    private $_maxRedirects = 10;
+
+    /**
      * コンストラクタ
      *
      * Zend_Http_Clientオブジェクトが存在すればパラメーターをリセットし、無ければオブジェクト化する
@@ -277,6 +284,30 @@ class System_Http
         return $this->_timeout;
     }
 
+    /*
+     * MaxRedirects の setter
+     *
+     * @param int $maxRedirects MaxRedirects
+     * @return object Http
+     */
+    public function setMaxRedirects($maxRedirects)
+    {
+        $this->_maxRedirects = $maxRedirects;
+
+        return $this;
+    }
+
+    /*
+     * MaxRedirects の getter
+     *
+     * @param void
+     * @return int MaxRedirects
+     */
+    public function getMaxRedirects()
+    {
+        return $this->_maxRedirects;
+    }
+
     /**
      * 送信時のデータの配列のsetter
      *
@@ -412,7 +443,7 @@ class System_Http
         }
 
         $this->_httpConfig    = array(
-            'maxredirects'    => 10,
+            'maxredirects'    => $this->_maxRedirects,
             'strictredirects' => false,
             'timeout'         => 10,
             'httpversion'     => 1.1,
